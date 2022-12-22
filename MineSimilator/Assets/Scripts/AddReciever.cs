@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [System.Serializable]
 public class ReceiverList
 {
@@ -14,13 +15,10 @@ public class Receiver
     public string recieverName;
     public int signalCount;
 }
-public class JsonSave : MonoBehaviour
+public class AddReciever : MonoBehaviour
 {
     [SerializeField]
-    private int _signalCount;
-    [SerializeField]
-    private string _recieverName;
-    
+    private List<Receiver> recieverList=new List<Receiver>();
     // Start is called before the first frame update
     void Start()
     {
@@ -33,21 +31,17 @@ public class JsonSave : MonoBehaviour
         
     }
 
-
-    private void _JsonSave(ReceiverList receiver)
+    public void _JsonSave()
     {
-        Receiver receiver1=new Receiver();
-        receiver1.recieverName=_recieverName;
-        receiver1.signalCount=_signalCount;
-        receiver.receiverList.Add(receiver1);
+        ReceiverList receiver=new ReceiverList();
+        for (int i = 0; i < recieverList.Count; i++)
+        {
+            receiver.receiverList.Add(recieverList[i]);
+            
+        }
+        
         string convertJson=JsonUtility.ToJson(receiver);
         System.IO.File.WriteAllText(Application.persistentDataPath+"/RecieverList.json",convertJson);
     }
 
-    private ReceiverList ReadJson()
-    {
-        string JsonData = System.IO.File.ReadAllText(Application.persistentDataPath + "/RecieverList.json");
-        ReceiverList receiver = JsonUtility. FromJson<ReceiverList>(JsonData);
-        return receiver;
-    }
 }
