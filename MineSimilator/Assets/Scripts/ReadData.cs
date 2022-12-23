@@ -9,7 +9,7 @@ public class ReadData : MonoBehaviour
     [SerializeField]
     private List<GameObject> signalList=new List<GameObject>();
 
-    private int firstSignal=0,secondSignal=0;
+    private float firstSignal=0,secondSignal=0;
     private string firstSignalName,secondSignalName;
     
     // Start is called before the first frame update
@@ -52,7 +52,7 @@ public class ReadData : MonoBehaviour
             Debug.Log(recieverList[i]);
 
         }
-         Debug.Log(firstSignalName);
+        Debug.Log(firstSignalName);
         Debug.Log(secondSignalName);
 
     }
@@ -75,11 +75,15 @@ public class ReadData : MonoBehaviour
                 secondPos=signalList[i].transform.position;
             }
         }
+        Debug.Log(firstSignal);
+        Debug.Log(secondSignal);
 
-        var desPosZ=-((Math.Abs(firstPos.z-secondPos.z)*(secondSignal/(firstSignal+secondSignal)))+firstPos.z);
+        var desPosZ=((Math.Abs(firstPos.z-secondPos.z)*(secondSignal/(firstSignal+secondSignal)))+firstPos.z);
         Debug.Log(desPosZ);
 
         miner.transform.position=new Vector3(miner.transform.position.x,miner.transform.position.y,desPosZ);
+        firstSignal=0;
+        secondSignal=0;
 
     }
 }
