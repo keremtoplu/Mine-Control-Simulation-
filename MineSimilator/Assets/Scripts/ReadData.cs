@@ -31,32 +31,6 @@ public class ReadData : MonoBehaviour
         return receiver;
     }
 
-    private void GetTwoBigRecieverSignal()
-    {
-        var recieverList=ReadJson().receiverList;
-        int receiverListCount=recieverList.Count;
-        for (int i = 0; i < receiverListCount ; i++)
-        {
-            var tempSignal=recieverList[i].signalCount;
-            var tempName=recieverList[i].recieverName;
-            if(tempSignal>firstSignal)
-            {
-                firstSignal=tempSignal;
-                firstSignalName=tempName;
-            }
-            else if(tempSignal>secondSignal && tempSignal<firstSignal)
-            {
-                secondSignal=tempSignal;
-                secondSignalName=tempName;
-            }
-            Debug.Log(recieverList[i]);
-
-        }
-        Debug.Log(firstSignalName);
-        Debug.Log(secondSignalName);
-
-    }
-
     public void MoveBySignal(GameObject miner)
     {
         Vector3 firstPos=Vector3.zero;
@@ -77,13 +51,55 @@ public class ReadData : MonoBehaviour
         }
         Debug.Log(firstSignal);
         Debug.Log(secondSignal);
+        
+        var desSignalCount=firstSignal
 
-        var desPosZ=((Math.Abs(firstPos.z-secondPos.z)*(secondSignal/(firstSignal+secondSignal)))+firstPos.z);
-        Debug.Log(desPosZ);
+        //var desPosZ=((Math.Abs(secondPos.z-firstPos.z))*(firstSignal/(firstSignal+secondSignal))+secondPos.z);
+        var desPos=new Vector3((Math.Abs(secondPos.x-firstPos.x))*(firstSignal/(firstSignal+secondSignal))+secondPos.x
+        ,Math.Abs(secondPos.y-firstPos.y)*(firstSignal/(firstSignal+secondSignal))+secondPos.y,
+        (Math.Abs(secondPos.z-firstPos.z)));
+        Debug.Log(desPos);
 
-        miner.transform.position=new Vector3(miner.transform.position.x,miner.transform.position.y,desPosZ);
+        miner.transform.position=Vector3.down;
         firstSignal=0;
         secondSignal=0;
 
+    }
+
+
+    private void GetTwoBigRecieverSignal()
+    {
+        var recieverList=ReadJson().receiverList;
+        var tempSignal=recieverList[0];
+
+        for (int i = 0; i < recieverList.Count ; i++)
+        {
+            var tempName=recieverList[i].recieverName;
+            
+            if(recieverList[i].signalCount>firstSignal)
+            {
+                firstSignal=recieverList[i].signalCount;
+                firstSignalName=tempName;
+                tempSignal=recieverList[i];
+                
+            }
+        }
+        recieverList.Remove(tempSignal);
+        for (int i = 0; i < recieverList.Count ; i++)
+        {
+            var tempName=recieverList[i].recieverName;
+            
+            if(recieverList[i].signalCount>secondSignal)
+            {
+                secondSignal=recieverList[i].signalCount;
+                secondSignalName=tempName;
+                
+            }
+        }
+        recieverList.Add(tempSignal);
+
+        Debug.Log(firstSignal);
+        Debug.Log(secondSignal);
+        
     }
 }
