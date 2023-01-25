@@ -5,6 +5,9 @@ using UnityEngine;
 public class Miner : MonoBehaviour
 {
     [SerializeField]
+    private int minerNumber;
+
+    [SerializeField]
     private ReadData readData;
 
     [SerializeField]
@@ -27,7 +30,7 @@ public class Miner : MonoBehaviour
             timer-=Time.deltaTime;
             if(timer<0)
             {
-                readData.MoveBySignal(gameObject);
+                readData.MoveBySignal(gameObject,minerNumber);
                 timer=timerStartValue;
             }
 

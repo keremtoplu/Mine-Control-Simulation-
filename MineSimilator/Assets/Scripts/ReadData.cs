@@ -9,60 +9,69 @@ public class ReadData : MonoBehaviour
     [SerializeField]
     private List<GameObject> signalList=new List<GameObject>();
 
-    private float firstSignal=0,secondSignal=0;
-    private string firstSignalName,secondSignalName;
+
+
+    private float bigSignal=0,secondBigSignal=0,firstSignal=0,secondSignal=0;
+    private  int countBig,countSmall;
+    private string bigSignalName,secondBigSignalName;
+    private GameObject firstPos,secondPos,secondBigPos,bigPos;
+                                    
+                                
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private ReceiverList ReadJson()
+    private MinerList ReadJson()
     {
         string JsonData = System.IO.File.ReadAllText(Application.persistentDataPath + "/RecieverList.json");
-        ReceiverList receiver = JsonUtility. FromJson<ReceiverList>(JsonData);
-        return receiver;
+        MinerList minerList = JsonUtility. FromJson<MinerList>(JsonData);
+        return minerList;
     }
 
-    public void MoveBySignal(GameObject miner)
+    public void MoveBySignal(GameObject miner, int minerNumber)
     {
-        Vector3 firstPos=Vector3.zero;
-        Vector3 secondPos=Vector3.zero;
+    
 
-        GetTwoBigRecieverSignal();
+        GetTwoBigRecieverSignal(minerNumber);
 
         for (int i = 0; i < signalList.Count; i++)
         {
-            if(signalList[i].name==firstSignalName)
+            if(signalList[i].name==bigSignalName)
             {
-                firstPos=signalList[i].transform.position;
+                bigPos=signalList[i];
+                countBig=i;
             }
-            else if(signalList[i].name==secondSignalName)
+            else if(signalList[i].name==secondBigSignalName)
             {
-                secondPos=signalList[i].transform.position;
+                secondBigPos=signalList[i];
+                countSmall=i;
             }
         }
-        Debug.Log(firstSignal);
-        Debug.Log(secondSignal);
-        Debug.Log(firstPos);
-        Debug.Log(secondPos);
+        
+        if(countBig>countSmall)
+        {
+            firstPos=secondBigPos;
+            secondPos=bigPos;
+        }
+        else
+        {
+            firstPos=bigPos;
+            secondPos=secondBigPos;
+        }
 
-        var desPosZ=((Math.Abs(secondPos.z-firstPos.z))*(firstSignal/(firstSignal+secondSignal))+secondPos.z);
+        Debug.Log(bigSignal);
+        Debug.Log(secondBigSignal);
+        Debug.Log(bigPos);
+        Debug.Log(secondBigPos);
+
+        var desPosZ=((Math.Abs(firstPos.transform.position.z-secondPos.transform.position.z))*(secondSignal/(firstSignal+secondSignal))+firstPos.transform.position.z);
         // var desPos=new Vector3((Math.Abs(secondPos.x-firstPos.x))*(firstSignal/(firstSignal+secondSignal))+secondPos.x
         // ,Math.Abs(secondPos.y-firstPos.y)*(firstSignal/(firstSignal+secondSignal))+secondPos.y,
         // (Math.Abs(secondPos.z-firstPos.z)));
         Debug.Log(desPosZ);
-        LeanTween.move(miner,new Vector3(firstPos.x,miner.transform.position.y,desPosZ),.5f).setEaseInCubic().setOnComplete(()=>
+        LeanTween.move(miner,new Vector3(secondPos.transform.position.x,miner.transform.position.y,desPosZ),.5f).setEaseInCubic().setOnComplete(()=>
         {
-            firstSignal=0;
-            secondSignal=0;
+            bigSignal=0;
+            secondBigSignal=0;
         });
         //miner.transform.position=Vector3.down;
         
@@ -70,20 +79,22 @@ public class ReadData : MonoBehaviour
     }
 
 
-    private void GetTwoBigRecieverSignal()
+    private void GetTwoBigRecieverSignal(int minerNumber)
     {
-        var recieverList=ReadJson().receiverList;
+        
+        var recieverList=ReadJson().minerRecieverList[minerNumber].recieverList;
         var tempSignal=recieverList[0];
 
         for (int i = 0; i < recieverList.Count ; i++)
         {
             var tempName=recieverList[i].recieverName;
             
-            if(recieverList[i].signalCount>firstSignal)
+            if(recieverList[i].signalCount>bigSignal)
             {
-                firstSignal=recieverList[i].signalCount;
-                firstSignalName=tempName;
+                bigSignal=recieverList[i].signalCount;
+                bigSignalName=tempName;
                 tempSignal=recieverList[i];
+                firstSignal=i;
                 
             }
         }
@@ -92,17 +103,29 @@ public class ReadData : MonoBehaviour
         {
             var tempName=recieverList[i].recieverName;
             
-            if(recieverList[i].signalCount>secondSignal)
+            if(recieverList[i].signalCount>secondBigSignal)
             {
-                secondSignal=recieverList[i].signalCount;
-                secondSignalName=tempName;
+                secondBigSignal=recieverList[i].signalCount;
+                secondBigSignalName=tempName;
+                secondSignal=i;
                 
             }
         }
         recieverList.Add(tempSignal);
 
-        Debug.Log(firstSignal);
-        Debug.Log(secondSignal);
+        if(firstSignal>secondSignal)
+        {
+            firstSignal=secondBigSignal;
+            secondSignal=bigSignal;
+        }
+        else
+        {
+            firstSignal=bigSignal;
+            secondSignal=secondBigSignal;
+        }
+
+        Debug.Log(bigSignal);
+        Debug.Log(secondBigSignal);
         
     }
 }
