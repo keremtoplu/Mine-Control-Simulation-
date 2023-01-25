@@ -58,7 +58,7 @@ public class ReadData : MonoBehaviour
             secondPos=secondBigPos;
         }
 
-        Debug.Log(bigSignal);
+        Debug.Log(bigSignal); 
         Debug.Log(secondBigSignal);
         Debug.Log(bigPos);
         Debug.Log(secondBigPos);
