@@ -4,10 +4,17 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject mainProgram;
 
+    [SerializeField]
+    private GameObject loginPanel;
 
     [SerializeField]
     private GameObject showValuePanel;
+
+    [SerializeField]
+    private GameObject mainMenuPanel;
 
     [SerializeField]
     private List<TextMeshProUGUI> gridTexts;
@@ -17,7 +24,10 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         showValuePanel.transform.localScale= Vector2.zero;
-        showValuePanel.SetActive(false);
+        CloseAllPanel();
+        loginPanel.SetActive(true);
+        
+
     }
 
     // Update is called once per frame
@@ -52,5 +62,26 @@ public class UIManager : MonoBehaviour
            //aynı zamanda yeni yaptığım uı ekranını butonla çalıştırıyorsun. Sen Editörden Setactivini aç bi incele.
            //Yeni eklenen kısımda ise elemanları göreceksin, SQL den çekeceğin değerleri burada gridTexts[0,1,3].text= değer; şeklinde yazdırabilirsin.
         }
+    }
+
+    private void CloseAllPanel()
+    {
+        showValuePanel.SetActive(false);
+        mainProgram.SetActive(false);
+        mainMenuPanel.SetActive(false);
+    }
+
+    public void Login()
+    {
+        //buraya veritabanı kontrolü eklenecek;
+        loginPanel.SetActive(false);
+        mainProgram.SetActive(true);
+        mainMenuPanel.SetActive(true);
+
+    }
+
+    public void Register()
+    {
+        //buraya veritabanına kayıt koyulacak;
     }
 }
