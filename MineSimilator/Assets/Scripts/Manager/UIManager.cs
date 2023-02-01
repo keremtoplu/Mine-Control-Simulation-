@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private List<TextMeshProUGUI> gridTexts;
 
+    [SerializeField]
+    private List<TextMeshPro> stationTexts;
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +64,7 @@ public class UIManager : MonoBehaviour
            //bu methodu update de timera 4 sn vererek çalıştır. WriteGridTexts(4f)
            //aynı zamanda yeni yaptığım uı ekranını butonla çalıştırıyorsun. Sen Editörden Setactivini aç bi incele.
            //Yeni eklenen kısımda ise elemanları göreceksin, SQL den çekeceğin değerleri burada gridTexts[0,1,3].text= değer; şeklinde yazdırabilirsin.
+           //sonrasında yeni aldığımız stationtext[i]=gridtexts[i] şeklinde eşitleyeceksin.
         }
     }
 
