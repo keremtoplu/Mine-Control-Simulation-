@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private List<TextMeshPro> stationTexts;
 
+    [SerializeField]
+    private GameObject camHolder;
+
 
     // Start is called before the first frame update
     void Start()
@@ -81,7 +84,8 @@ public class UIManager : MonoBehaviour
         loginPanel.SetActive(false);
         mainProgram.SetActive(true);
         mainMenuPanel.SetActive(true);
-
+        camHolder.transform.position=new Vector3(1.5199f,30.520f,-16.65f);
+        
     }
 
     public void Register()

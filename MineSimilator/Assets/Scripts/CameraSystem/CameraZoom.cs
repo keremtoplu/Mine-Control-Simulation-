@@ -10,6 +10,7 @@ public class CameraZoom : MonoBehaviour
 
     private Vector3 _targetPosition;
     private float _input;
+    
 
 
     private void Awake()

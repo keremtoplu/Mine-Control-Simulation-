@@ -63,17 +63,17 @@ public class ReadData : MonoBehaviour
         Debug.Log(bigPos);
         Debug.Log(secondBigPos);
 
-        var desPosZ=((Math.Abs(firstPos.transform.position.z-secondPos.transform.position.z))*(secondSignal/(firstSignal+secondSignal))+firstPos.transform.position.z);
-        // var desPos=new Vector3((Math.Abs(secondPos.x-firstPos.x))*(firstSignal/(firstSignal+secondSignal))+secondPos.x
-        // ,Math.Abs(secondPos.y-firstPos.y)*(firstSignal/(firstSignal+secondSignal))+secondPos.y,
-        // (Math.Abs(secondPos.z-firstPos.z)));
-        Debug.Log(desPosZ);
-        LeanTween.move(miner,new Vector3(secondPos.transform.position.x,miner.transform.position.y,desPosZ),.5f).setEaseInCubic().setOnComplete(()=>
+        //var desPosZ=((Math.Abs(firstPos.transform.position.z-secondPos.transform.position.z))*(secondSignal/(firstSignal+secondSignal))+firstPos.transform.position.z);
+        var desPos=new Vector3(Math.Abs(firstPos.transform.position.x-secondPos.transform.position.x)*(secondSignal/(firstSignal+secondSignal))+firstPos.transform.position.x
+        ,Math.Abs(firstPos.transform.position.y-secondPos.transform.position.y)*(secondSignal/(firstSignal+secondSignal))+firstPos.transform.position.y,
+        Math.Abs(firstPos.transform.position.z-secondPos.transform.position.z)*(secondSignal/(firstSignal+secondSignal))+firstPos.transform.position.z
+        );
+        Debug.Log(desPos);
+        LeanTween.move(miner,desPos,.5f).setEaseInCubic().setOnComplete(()=>
         {
             bigSignal=0;
             secondBigSignal=0;
         });
-        //miner.transform.position=Vector3.down;
         
 
     }
