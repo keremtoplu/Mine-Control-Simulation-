@@ -6310,33 +6310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e035127c01f9c74493dc1a6d64db5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recieverList:
-  - recieverName: A1
-    signalCount: 80
-  - recieverName: A2
-    signalCount: 20
-  - recieverName: A3
-    signalCount: 0
-  - recieverName: A4
-    signalCount: 0
-  _recieverList1:
-  - recieverName: A1
-    signalCount: 0
-  - recieverName: A2
-    signalCount: 10
-  - recieverName: A3
-    signalCount: 90
-  - recieverName: A4
-    signalCount: 0
-  _recieverList2:
-  - recieverName: A1
-    signalCount: 0
-  - recieverName: A2
-    signalCount: 0
-  - recieverName: A3
-    signalCount: 0
-  - recieverName: A4
-    signalCount: 100
+  recieverPref: {fileID: 1140106142849476493, guid: 323e8b21f06314e428c997ac95106680, type: 3}
+  recieversParent: {fileID: 1502307671}
 --- !u!4 &832543600
 Transform:
   m_ObjectHideFlags: 0
@@ -6350,7 +6325,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 862678486}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &842222175
 GameObject:
@@ -6549,10 +6524,10 @@ Transform:
   m_Children:
   - {fileID: 8235321473487180630}
   - {fileID: 1740868882}
-  - {fileID: 832543600}
   - {fileID: 1502307672}
   - {fileID: 938863142}
   - {fileID: 1998388212}
+  - {fileID: 832543600}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7078,7 +7053,7 @@ Transform:
   - {fileID: 469217652}
   - {fileID: 967100070}
   m_Father: {fileID: 862678486}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &941788493
 GameObject:
@@ -11599,7 +11574,7 @@ Transform:
   - {fileID: 1006110469}
   - {fileID: 716882080}
   m_Father: {fileID: 862678486}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1534479811
 GameObject:
@@ -11857,7 +11832,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1558838026}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 832543599}
+        m_TargetAssemblyTypeName: AddReciever, Assembly-CSharp
+        m_MethodName: ProduceReciever
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1558838026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15425,7 +15412,7 @@ Transform:
   m_Children:
   - {fileID: 3334328248140762425}
   m_Father: {fileID: 862678486}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1999198301
 GameObject:
@@ -19465,13 +19452,28 @@ GameObject:
   - component: {fileID: 8235321473487180630}
   - component: {fileID: 5036826113999281395}
   - component: {fileID: 7062367573878663225}
-  m_Layer: 0
-  m_Name: mine
+  - component: {fileID: 8719652309973977581}
+  m_Layer: 3
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &8719652309973977581
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8719652309973977580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3341722285690634845, guid: ba7798007cbbe444f8a3e4edf070ee83, type: 3}
 --- !u!114 &8869676509664136407
 MonoBehaviour:
   m_ObjectHideFlags: 0
