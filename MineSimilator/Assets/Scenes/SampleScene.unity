@@ -6312,6 +6312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recieverPref: {fileID: 1140106142849476493, guid: 323e8b21f06314e428c997ac95106680, type: 3}
   recieversParent: {fileID: 1502307671}
+  readData: {fileID: 1740868881}
 --- !u!4 &832543600
 Transform:
   m_ObjectHideFlags: 0

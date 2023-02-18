@@ -38,6 +38,9 @@ public class AddReciever : MonoBehaviour
     [SerializeField]
     private GameObject recieversParent;
 
+    [SerializeField]
+    private ReadData readData;
+
     // public void _JsonSave()
     // {
 
@@ -75,6 +78,8 @@ public class AddReciever : MonoBehaviour
 
            var newReciever= Instantiate(recieverPref,desPos,Quaternion.identity,recieversParent.transform);
            newReciever.GetComponent<Reciever>().IsBreak=true;
+           newReciever.name="A"+(readData.signalList.Count+1);
+           readData.signalList.Add(newReciever);
         }    
     }
 
@@ -82,8 +87,11 @@ public class AddReciever : MonoBehaviour
 
     public void ProduceReciever()
     {
-        Instantiate(recieverPref);
+        var newReciever=Instantiate(recieverPref);
         PlayerPrefs.SetInt("currentSaveReciever",PlayerPrefs.GetInt("currentSaveReciever")+1);
+        newReciever.name="A"+(readData.signalList.Count+1);
+        readData.signalList.Add(newReciever);
+
 
     }
 

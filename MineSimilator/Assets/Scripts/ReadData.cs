@@ -6,8 +6,8 @@ using UnityEngine;
 public class ReadData : MonoBehaviour
 {
     
-    [SerializeField]
-    private List<GameObject> signalList=new List<GameObject>();
+   
+    public List<GameObject> signalList=new List<GameObject>();
 
 
 
