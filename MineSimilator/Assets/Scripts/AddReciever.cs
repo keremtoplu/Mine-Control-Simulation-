@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 
 [System.Serializable]
@@ -36,10 +38,19 @@ public class AddReciever : MonoBehaviour
     private GameObject recieverPref;
 
     [SerializeField]
+    private GameObject recieverNamePanel;
+
+    [SerializeField]
+    private TMP_InputField recieverNameInput;
+
+    [SerializeField]
     private GameObject recieversParent;
 
     [SerializeField]
     private ReadData readData;
+
+    private string currentRecieverName;
+    private int addedReciever=0;
 
     // public void _JsonSave()
     // {
@@ -68,6 +79,7 @@ public class AddReciever : MonoBehaviour
 
     private void Start() 
     {
+        recieverNamePanel.SetActive(false);
         
         for (int i = 1; i <= PlayerPrefs.GetInt("currentSaveReciever"); i++)
         {
@@ -78,22 +90,37 @@ public class AddReciever : MonoBehaviour
 
            var newReciever= Instantiate(recieverPref,desPos,Quaternion.identity,recieversParent.transform);
            newReciever.GetComponent<Reciever>().IsBreak=true;
-           newReciever.name="A"+(readData.signalList.Count+1);
+           newReciever.name=PlayerPrefs.GetString("RecieverName"+i);
+           Debug.Log(PlayerPrefs.GetString("RecieverName"+PlayerPrefs.GetInt("currentSaveReciever")));
            readData.signalList.Add(newReciever);
         }    
     }
 
     //anten ekleme
 
-    public void ProduceReciever()
+    public void ProduceNewReciever()
     {
+        currentRecieverName=recieverNameInput.text;
+        recieverNamePanel.SetActive(false);
         var newReciever=Instantiate(recieverPref);
         PlayerPrefs.SetInt("currentSaveReciever",PlayerPrefs.GetInt("currentSaveReciever")+1);
-        newReciever.name="A"+(readData.signalList.Count+1);
+        newReciever.name=currentRecieverName;
+
+        PlayerPrefs.SetString("RecieverName"+PlayerPrefs.GetInt("currentSaveReciever"),currentRecieverName);
         readData.signalList.Add(newReciever);
 
+    }
+
+    public void AddNameReciever()
+    {
+        recieverNamePanel.SetActive(true);
+    
+        
 
     }
+    
+
+    
 
 
 
