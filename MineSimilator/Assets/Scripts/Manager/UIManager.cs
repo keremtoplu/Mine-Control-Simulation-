@@ -66,6 +66,7 @@ public class UIManager : MonoBehaviour
 
             });
             isShowPanelActive=false;
+            
         }
         
     }
