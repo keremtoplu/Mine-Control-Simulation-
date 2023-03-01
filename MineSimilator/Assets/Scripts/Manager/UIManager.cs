@@ -26,12 +26,15 @@ public class UIManager : MonoBehaviour
     private GameObject camHolder;
 
 
+    private bool isShowPanelActive=false;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        showValuePanel.transform.localScale= Vector2.zero;
         CloseAllPanel();
         loginPanel.SetActive(true);
+
         
 
     }
@@ -45,17 +48,26 @@ public class UIManager : MonoBehaviour
 
     public void OpenShowValue()
     {
-        showValuePanel.SetActive(true);
-        showValuePanel.LeanScale(Vector2.one,0.8f);
-    }
-
-    public void CloseShowValuePanel()
-    {
-        showValuePanel.LeanScale(Vector2.zero,1f).setEaseInBack().setOnComplete(()=>
+        var posShowPanelPos=showValuePanel.transform.position;
+        var mainMenuPanelPos=mainMenuPanel.transform.position;
+        if(!isShowPanelActive)
         {
-            showValuePanel.SetActive(false);
+            showValuePanel.SetActive(true);
+            showValuePanel.LeanMoveLocalX(701f,1f);
+            mainMenuPanel.LeanMoveLocalX(375f,1f);
+            isShowPanelActive=true;
+        }
+        else
+        {
+            mainMenuPanel.LeanMoveLocalX(mainMenuPanelPos.x-446,1f);
+            showValuePanel.LeanMoveX(posShowPanelPos.x+523,1f).setOnComplete(()=>
+            {
+                showValuePanel.SetActive(false);
 
-        });
+            });
+            isShowPanelActive=false;
+        }
+        
     }
 
     private void WriteGridTexts(float timer)
