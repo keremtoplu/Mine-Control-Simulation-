@@ -115,11 +115,15 @@ public class CameraMovement : MonoBehaviour
         {
             dragPanMoveActive = true;
             lastMousePosition = Input.mousePosition;
-            }
-            if (Input.GetMouseButtonUp (1)) {
+        }
+        if (Input.GetMouseButtonUp (1)) 
+        {
             dragPanMoveActive = false;
-            }
-            if (dragPanMoveActive) {
+        
+        }
+
+        if (dragPanMoveActive) 
+        {
             Vector2 mouseMovementDelta = (Vector2) Input.mousePosition - lastMousePosition;
             float dragPanSpeed = 2f;
             inputDir.x = mouseMovementDelta.x* dragPanSpeed;

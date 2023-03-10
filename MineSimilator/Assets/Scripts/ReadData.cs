@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PathCreation;
 
 public class ReadData : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ReadData : MonoBehaviour
     public List<GameObject> signalList=new List<GameObject>();
 
 
+    public PathCreator path;
 
     private float bigSignal=0,secondBigSignal=0,firstSignal=0,secondSignal=0;
     private  int countBig,countSmall;
@@ -68,6 +70,8 @@ public class ReadData : MonoBehaviour
         ,Math.Abs(firstPos.transform.position.y-secondPos.transform.position.y)*(secondSignal/(firstSignal+secondSignal))+firstPos.transform.position.y,
         Math.Abs(firstPos.transform.position.z-secondPos.transform.position.z)*(secondSignal/(firstSignal+secondSignal))+firstPos.transform.position.z
         );
+        Debug.Log(desPos);
+        desPos=path.path.GetClosestPointOnPath(desPos);
         Debug.Log(desPos);
         LeanTween.move(miner,desPos,.5f).setEaseInCubic().setOnComplete(()=>
         {
