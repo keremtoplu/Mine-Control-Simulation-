@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reciever : MonoBehaviour
+public class AddedReciever : MonoBehaviour
 {
    
     private RaycastHit hit;

@@ -5,28 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 
 
-[System.Serializable]
-public class MinerList
-{
-    public List<RecieverList> minerRecieverList= new List<RecieverList>();
-}
 
-[System.Serializable]
-public class RecieverList
-{
-    public List<Receiver> recieverList=new List<Receiver>();
-}
-
-[System.Serializable]
-public class Receiver
-{
-    public string recieverName;
-    public int signalCount;
-}
 public class AddReciever : MonoBehaviour
 {
-    // [SerializeField]
-    // private List<Receiver> _recieverList=new List<Receiver>();
+
 
     // [SerializeField]
     // private List<Receiver> _recieverList1=new List<Receiver>();
@@ -89,7 +71,7 @@ public class AddReciever : MonoBehaviour
             var desPos= new Vector3(x,y,z);
 
            var newReciever= Instantiate(recieverPref,desPos,Quaternion.identity,recieversParent.transform);
-           newReciever.GetComponent<Reciever>().IsBreak=true;
+           newReciever.GetComponent<AddedReciever>().IsBreak=true;
            newReciever.name=PlayerPrefs.GetString("RecieverName"+i);
            Debug.Log(PlayerPrefs.GetString("RecieverName"+PlayerPrefs.GetInt("currentSaveReciever")));
            readData.signalList.Add(newReciever);

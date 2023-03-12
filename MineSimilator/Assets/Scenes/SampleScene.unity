@@ -3438,12 +3438,15 @@ MonoBehaviour:
       - {x: 2.0351622, y: 0.058201432, z: 6.5407705}
       - {x: 2.034169, y: 0.009368325, z: 6.583822}
       - {x: 2.026337, y: -0.3756478, z: 6.92325}
-      - {x: 1.9195201, y: -1.188768, z: 6.2765207}
+      - {x: 1.8696351, y: -1.1678706, z: 6.3153267}
       - {x: 1.7472019, y: -1.6636183, z: 6.3678126}
-      - {x: 1.4960102, y: -2.3558168, z: 6.5008903}
-      - {x: 1.2593943, y: -3.584008, z: 7.1734886}
+      - {x: 1.6763828, y: -1.9503741, z: 6.3981724}
+      - {x: 1.5833195, y: -2.31879, z: 6.559567}
+      - {x: 1.4546057, y: -2.5527875, z: 6.689351}
+      - {x: 1.2520589, y: -2.921011, z: 6.893582}
+      - {x: 1.0031822, y: -3.612455, z: 7.2965183}
       - {x: 0.5942794, y: -3.554674, z: 7.5151134}
-      - {x: 0.087094486, y: -3.532305, z: 7.77562}
+      - {x: 0.09492135, y: -3.4841108, z: 7.782065}
       - {x: -0.78123057, y: -2.5332541, z: 7.631702}
       - {x: -0.5252393, y: -2.0244954, z: 7.6668253}
       - {x: -0.5041426, y: -1.9825677, z: 7.6697197}
@@ -3558,12 +3561,15 @@ MonoBehaviour:
       - {x: 4.9462986, y: 0.0066563617, z: 4.1650968}
       - {x: 4.947101, y: -0.009129668, z: 4.2225685}
       - {x: 4.948265, y: -0.03201776, z: 4.3058968}
-      - {x: 4.9493456, y: -0.101167396, z: 4.402178}
+      - {x: 4.9492846, y: -0.101623915, z: 4.4019003}
       - {x: 4.9496803, y: -0.14633603, z: 4.4758563}
-      - {x: 4.951067, y: -0.33356115, z: 4.7812552}
-      - {x: 4.948932, y: -0.62180233, z: 5.163307}
+      - {x: 4.9504538, y: -0.23365676, z: 4.620289}
+      - {x: 4.9499865, y: -0.36417037, z: 4.803962}
+      - {x: 4.9497933, y: -0.45985895, z: 4.9429946}
+      - {x: 4.9495764, y: -0.5672775, z: 5.09907}
+      - {x: 4.9487176, y: -0.71618456, z: 5.303207}
       - {x: 4.948221, y: -0.82397693, z: 5.459024}
-      - {x: 4.947522, y: -1.0227119, z: 5.7497096}
+      - {x: 4.947299, y: -1.0243095, z: 5.7486105}
       - {x: 4.94387, y: -1.2906805, z: 6.1353464}
       - {x: 4.9449954, y: -1.4827547, z: 6.4304743}
       - {x: 4.9456944, y: -1.6020527, z: 6.613779}
@@ -3587,6 +3593,8 @@ MonoBehaviour:
         m_Center: {x: -0.27253997, y: 0.015741706, z: -0.40429243}
         m_Extent: {x: 0.50875694, y: 0.085834146, z: 0.4498113}
       perAnchorNormalsAngle:
+      - 0
+      - 0
       - 0
       - 0
       - 0
@@ -8677,6 +8685,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941788493}
   m_CullTransparentMesh: 1
+--- !u!1 &942757053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 942757054}
+  - component: {fileID: 942757055}
+  m_Layer: 0
+  m_Name: TagManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &942757054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942757053}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6500244, y: 7.889984, z: 2.432}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &942757055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942757053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6adbfb49adc1c848af54589ac19fc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagPref: {fileID: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  maxTagCount: 700
 --- !u!1 &945586848
 GameObject:
   m_ObjectHideFlags: 0
@@ -15067,10 +15122,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   signalList:
-  - {fileID: 1450176864}
-  - {fileID: 1703833543}
-  - {fileID: 1006110467}
-  - {fileID: 716882078}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  path: {fileID: 0}
 --- !u!4 &1740868882
 Transform:
   m_ObjectHideFlags: 0
@@ -19841,6 +19897,7 @@ MonoBehaviour:
   readData: {fileID: 1740868881}
   timer: 5
   timerIsActive: 1
+  mineRecieverList: []
 --- !u!224 &3651442101403054145
 RectTransform:
   m_ObjectHideFlags: 0

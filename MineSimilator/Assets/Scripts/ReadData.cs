@@ -29,11 +29,11 @@ public class ReadData : MonoBehaviour
         return minerList;
     }
 
-    public void MoveBySignal(GameObject miner, int minerNumber)
+    public void MoveBySignal(GameObject miner, List<Receiver> minerReceiverList)
     {
     
 
-        GetTwoBigRecieverSignal(minerNumber);
+        GetTwoBigRecieverSignal(minerReceiverList);
 
         for (int i = 0; i < signalList.Count; i++)
         {
@@ -83,39 +83,39 @@ public class ReadData : MonoBehaviour
     }
 
 
-    private void GetTwoBigRecieverSignal(int minerNumber)
+    private void GetTwoBigRecieverSignal(List<Receiver> minerReceiverList)
     {
         
-        var recieverList=ReadJson().minerRecieverList[minerNumber].recieverList;
-        var tempSignal=recieverList[0];
+        // var recieverList=ReadJson().minerRecieverList[minerNumber].recieverList;
+        var tempSignal=minerReceiverList[0];
 
-        for (int i = 0; i < recieverList.Count ; i++)
+        for (int i = 0; i < minerReceiverList.Count ; i++)
         {
-            var tempName=recieverList[i].recieverName;
+            var tempName=minerReceiverList[i].recieverName;
             
-            if(recieverList[i].signalCount>bigSignal)
+            if(minerReceiverList[i].signalCount>bigSignal)
             {
-                bigSignal=recieverList[i].signalCount;
+                bigSignal=minerReceiverList[i].signalCount;
                 bigSignalName=tempName;
-                tempSignal=recieverList[i];
+                tempSignal=minerReceiverList[i];
                 firstSignal=i;
                 
             }
         }
-        recieverList.Remove(tempSignal);
-        for (int i = 0; i < recieverList.Count ; i++)
+        minerReceiverList.Remove(tempSignal);
+        for (int i = 0; i < minerReceiverList.Count ; i++)
         {
-            var tempName=recieverList[i].recieverName;
+            var tempName=minerReceiverList[i].recieverName;
             
-            if(recieverList[i].signalCount>secondBigSignal)
+            if(minerReceiverList[i].signalCount>secondBigSignal)
             {
-                secondBigSignal=recieverList[i].signalCount;
+                secondBigSignal=minerReceiverList[i].signalCount;
                 secondBigSignalName=tempName;
                 secondSignal=i;
                 
             }
         }
-        recieverList.Add(tempSignal);
+        minerReceiverList.Add(tempSignal);
 
         if(firstSignal>secondSignal)
         {
@@ -132,4 +132,5 @@ public class ReadData : MonoBehaviour
         Debug.Log(secondBigSignal);
         
     }
+
 }
