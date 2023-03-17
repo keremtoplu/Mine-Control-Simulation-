@@ -1,54 +1,3 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-
-// public class TagManager : Singleton<TagManager>
-// {
-//     [SerializeField]
-//     private GameObject tagPref;
-
-//     [SerializeField]
-//     private Vector3 startPos;
-
-//     [SerializeField]
-//     private int maxTagCount;
-
-//     private Miner b;
-//     private UIManager c;
-//     private List<GameObject> tagList=new List<GameObject>();
-//     void Start()
-//     {
-//         for (int i = 1; i < maxTagCount; i++)
-//         {
-//            var newTag= Instantiate(tagPref,startPos,Quaternion.identity);
-//            tagList.Add(newTag);
-//            newTag.SetActive(false);
-//         }
-//     }
-
-//     void Update()
-//     {
-
-        
-//     }
-
-
-
-//     private void UpdateMinersRecieverListCount()
-//     {
-        
-//         if(/* tag ın numara kontrolü yapılacak*/maxTagCount>50)
-//         {
-//             for (int i = 0; i < tagList.Count; i++)
-//             {
-//                 if(tagList[i].name==88.ToString())
-//                 {
-                    
-//                 }
-//             }
-//         }
-//     }
-// }
 
 using System;
 using System.Collections;
@@ -71,19 +20,22 @@ public class TagManager : Singleton<TagManager>
     [SerializeField]
     private ReadData readData;
 
+    [SerializeField]
+    private RecieverManager recieverManager;
+
     private List<GameObject> tagList=new List<GameObject>();
     private string[] data;
     
     void Start()
     {
             
-
-
         for (int i = 0; i < maxTagCount; i++)
         {
            var newTag= Instantiate(tagPref,startPos,Quaternion.identity);
             newTag.GetComponent<Miner>().readData = readData;
-            newTag.GetComponent<Miner>().mineRecieverNameList.Add(readData.signalList[i].name);
+            recieverManager._JsonSave();
+            newTag.GetComponent<Miner>().MinerNumber=i;
+            tagList.Add(newTag);
             newTag.name = i.ToString();
             newTag.SetActive(false);
             Debug.Log(newTag);
@@ -110,13 +62,13 @@ public class TagManager : Singleton<TagManager>
                 if (tagList[i].name == fin[0])
                 {
 
-                var mineRecieverList = tagList[i].GetComponent<Miner>().mineRecieverNameList;
+                var mineRecieverList = readData.ReadJson().minerRecieverList[i].recieverList;
                     for (int x = 0; x < mineRecieverList.Count; x++)
                     {
-                        if (mineRecieverList[x] == fin[3])
+                        if (mineRecieverList[x].recieverName == fin[3])
                         {
                             //mineRecieverList[x].signalCount = Convert.ToInt32(fin[2]);
-
+                            recieverManager.UpdateJsonSave(i,maxTagCount,x,Convert.ToInt32(fin[2]));
                         }
                     }
                 }
