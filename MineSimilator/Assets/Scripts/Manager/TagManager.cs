@@ -70,7 +70,7 @@ public class TagManager : Singleton<TagManager>
                         if (mineRecieverList[x].recieverName == fin[3])
                         {
                             //mineRecieverList[x].signalCount = Convert.ToInt32(fin[2]);
-                            recieverManager.UpdateJsonSave(i,maxTagCount,x,Convert.ToInt32(fin[2]));
+                            recieverManager.UpdateJsonSave(mineRecieverList,Convert.ToInt32(fin[2]),x);
                         }
                     }
                 }

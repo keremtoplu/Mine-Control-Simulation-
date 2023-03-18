@@ -94,11 +94,12 @@ public class RecieverManager : MonoBehaviour
     }
 
     
-    public void UpdateJsonSave(int minerNumber, int maxTagCount,int signalNumber,int newSignalCount)
+    public void UpdateJsonSave(List<Receiver> jsonSaveFile,int newSignalCount, int listNumber)
     {
-         var jsonSaveFile=readData.ReadJson();
+        //  var jsonSaveFile=readData.ReadJson();
          
-         jsonSaveFile.minerRecieverList[minerNumber].recieverList[signalNumber].signalCount=newSignalCount;
+        //  jsonSaveFile.minerRecieverList[minerNumber].recieverList[signalNumber].signalCount=newSignalCount;
+        jsonSaveFile[listNumber].signalCount=newSignalCount;
 
          string convertJson=JsonUtility.ToJson(jsonSaveFile);
          System.IO.File.WriteAllText(Application.persistentDataPath+"/RecieverList.json",convertJson);
