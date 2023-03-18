@@ -33,13 +33,13 @@ public class TagManager : Singleton<TagManager>
         {
            var newTag= Instantiate(tagPref,startPos,Quaternion.identity);
             newTag.GetComponent<Miner>().readData = readData;
-            recieverManager._JsonSave();
             newTag.GetComponent<Miner>().MinerNumber=i;
             tagList.Add(newTag);
             newTag.name = i.ToString();
             newTag.SetActive(false);
             Debug.Log(newTag);
         }
+        recieverManager._JsonSave(maxTagCount);
     }
 
     void Update()
@@ -63,8 +63,10 @@ public class TagManager : Singleton<TagManager>
                 {
 
                 var mineRecieverList = readData.ReadJson().minerRecieverList[i].recieverList;
+                
                     for (int x = 0; x < mineRecieverList.Count; x++)
                     {
+                        mineRecieverList[x].recieverName=readData.signalList[x].name;
                         if (mineRecieverList[x].recieverName == fin[3])
                         {
                             //mineRecieverList[x].signalCount = Convert.ToInt32(fin[2]);

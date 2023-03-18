@@ -25,8 +25,9 @@ public class RecieverManager : MonoBehaviour
     private int addedReciever=0;
    
 
-    private void Start() 
+    private void Awake() 
     {
+    
         tempReciever.recieverName="A";
         tempReciever.signalCount=0;
         recieverNamePanel.SetActive(false);
@@ -41,8 +42,9 @@ public class RecieverManager : MonoBehaviour
            var newReciever= Instantiate(recieverPref,desPos,Quaternion.identity,recieversParent.transform);
            newReciever.GetComponent<AddedReciever>().IsBreak=true;
            newReciever.name=PlayerPrefs.GetString("RecieverName"+i);
-           Debug.Log(PlayerPrefs.GetString("RecieverName"+PlayerPrefs.GetInt("currentSaveReciever")));
+
            readData.signalList.Add(newReciever);
+          
         }    
     }
 
@@ -69,20 +71,24 @@ public class RecieverManager : MonoBehaviour
     }
 
 
-    public void _JsonSave()
+    public void _JsonSave(int maxTagCount)
     {
 
         MinerList miner=new MinerList();
-        RecieverList recieverList=new RecieverList();
-        
-        for (int i = 0; i < readData.signalList.Count; i++)
+        for (int i = 0; i < maxTagCount; i++)
         {
-            recieverList.recieverList.Add(tempReciever);
-            recieverList.recieverList[i].recieverName=readData.signalList[i].name;
+            RecieverList recieverList=new RecieverList();
         
+            for (int j = 0; j < readData.signalList.Count; j++)
+            {
+                recieverList.recieverList.Add(tempReciever);
+                
+            }
+
+            miner.minerRecieverList.Add(recieverList);
+            
         }
 
-        miner.minerRecieverList.Add(recieverList); 
         string convertJson=JsonUtility.ToJson(miner);
         System.IO.File.WriteAllText(Application.persistentDataPath+"/RecieverList.json",convertJson);
     }
@@ -91,7 +97,7 @@ public class RecieverManager : MonoBehaviour
     public void UpdateJsonSave(int minerNumber, int maxTagCount,int signalNumber,int newSignalCount)
     {
          var jsonSaveFile=readData.ReadJson();
-
+         
          jsonSaveFile.minerRecieverList[minerNumber].recieverList[signalNumber].signalCount=newSignalCount;
 
          string convertJson=JsonUtility.ToJson(jsonSaveFile);
