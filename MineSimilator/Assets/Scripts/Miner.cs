@@ -49,6 +49,7 @@ public class Miner : MonoBehaviour
 
     private void IsInDanger()
     {
+        //indanger veritabanından gelecek.
         sprite.color=Color.red;
         if(!InDanger)
         {

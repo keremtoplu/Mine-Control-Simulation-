@@ -48,7 +48,7 @@ public class AddedReciever : MonoBehaviour
             }
         }
         
-        Debug.Log(PlayerPrefs.GetInt("currentSaveReciever"));
+        //Debug.Log(PlayerPrefs.GetInt("currentSaveReciever"));
     }
 
 

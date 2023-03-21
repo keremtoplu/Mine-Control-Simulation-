@@ -37,7 +37,6 @@ public class TagManager : Singleton<TagManager>
             tagList.Add(newTag);
             newTag.name = i.ToString();
             newTag.SetActive(false);
-            Debug.Log(newTag);
         }
         recieverManager._JsonSave(maxTagCount);
     }
